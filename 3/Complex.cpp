@@ -6,53 +6,37 @@ Complex::Complex()
 	this->imaginary = 0;
 }
 
-Complex::Complex(double real, double imaginary)
+Complex::Complex(const double real, const double imaginary)
 {
 	this->real = real;
 	this->imaginary = imaginary;
 }
 
-Complex::Complex(Pair a)
+Complex::Complex(Pair& pair)
 {
-	this->real = a.get_a();
-	this->imaginary = a.get_b();
+	this->real = pair.get_a();
+	this->imaginary = pair.get_b();
 }
 
 Complex Complex::operator*(const Complex& other)
 {
-	Complex temp;
-
-	temp.real = ((this->real * other.real) - (this->imaginary * other.imaginary));
-
-	temp.imaginary = ((this->real * other.imaginary) + (this->imaginary * other.real));
-
-	return temp;
+	return Complex(((this->real * other.real) - (this->imaginary * other.imaginary)), ((this->real * other.imaginary) + (this->imaginary * other.real)));
 }
 
 Complex Complex::operator/(const Complex& other)
 
 {
 
-	if ((other.real * other.real + other.imaginary * other.imaginary) != 0)
+	if (std::fabs(this->real - other.real) < std::numeric_limits<double>::epsilon() && std::fabs(this->imaginary - other.imaginary) < std::numeric_limits<double>::epsilon())
 
 	{
-
-		Complex temp;
-
-		temp.real = (((this->real * other.real) + (this->imaginary * other.imaginary)) / (other.real * other.real + other.imaginary * other.imaginary));
-
-		temp.imaginary = (other.real * this->imaginary - this->real * other.imaginary) / ((other.real * other.real + other.imaginary * other.imaginary));
-
-		return temp;
-
+		throw std::invalid_argument("division is impossible");
 	}
 
 	else
-
 	{
-
-		throw std::invalid_argument("division is impossible");
-
+		return Complex((((this->real * other.real) + (this->imaginary * other.imaginary)) / (other.real * other.real + other.imaginary * other.imaginary)),
+			(other.real * this->imaginary - this->real * other.imaginary) / ((other.real * other.real + other.imaginary * other.imaginary)));
 	}
 
 }

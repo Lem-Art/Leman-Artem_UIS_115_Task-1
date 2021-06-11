@@ -12,20 +12,20 @@ Pair::Pair(double a, double b)
 	this->b = b;
 }
 
+
+
 Pair Pair::operator+(const Pair& other)
 {
-	Pair temp;
-	temp.a = this->a + other.a;
-	temp.b = this->b + other.b;
-	return temp;
+	return Pair(this->a + other.a, this->b + other.b);
 }
 
-double Pair::get_a()
+
+double Pair::get_a() const
 {
 	return this->a;
 }
 
-double Pair::get_b()
+double Pair::get_b() const
 {
 	return this->b;
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "Pair.h"
+#include <cmath>
 class Complex : public Pair
 {
 private:
@@ -23,18 +24,23 @@ public:
 	* \param дейстивтельная часть
 	* \param мнимая часть
 	*/
-	Complex(double real, double imaginary);
+	Complex(const double real,const double imaginary);
 
 	/**
 	*\brief конструктор с параметрами
 	* \param пара чисел
 	*/
-	Complex(Pair a);
+	Complex(Pair& pair);
 
 	/**
 	*\brief деструктор по умолчанию
 	*/
 	~Complex() = default;
+
+	/**
+	*\brief конструтор перемещения
+	*/
+	Complex(Complex&& other) = default;
 
 	/**
 	 \brief	Конструктор копирования

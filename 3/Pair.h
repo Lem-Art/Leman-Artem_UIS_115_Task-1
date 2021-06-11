@@ -30,20 +30,26 @@ public:
 	*/
 	~Pair() = default;
 
+
 	/**
-	*\brief оператор сложени¤
+	*\brief конструтор перемещения
+	*/
+	Pair(Pair&& other) = default;
+
+	/**
+	*\brief оператор сложения
 	*/
 	Pair operator+(const Pair& other);
 
 
 	/**
-	 \brief	 онструктор копировани¤
+	 \brief	Конструктор копирования
 	 */
 	Pair(const Pair&) = default;
 
 
 	/**
-	 \brief	 онструктор присвоени¤
+	 \brief	Конструктор присвоения
 	 */
 	Pair& operator=(const  Pair&) = default;
 
@@ -53,13 +59,13 @@ public:
 	friend std::ostream& operator<<(std::ostream& out, Pair& F);
 
 	/**
-	*\brief геттер дл¤ a
+	*\brief геттер для a
 	*/
-	double get_a();
+	double get_a() const;
 
 	/**
-	*\brief геттер дл¤ b
+	*\brief геттер для b
 	*/
-	double get_b();
+	double get_b() const;
 };
 
